@@ -1,5 +1,6 @@
 <?php
 
+// AdminAuthController.php
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -9,26 +10,29 @@ class AdminAuthController extends Controller
 {
     public function showLogin()
     {
-        return view('admin.login'); // resources/views/admin/login.blade.php
+        return view('admin.login');
     }
 
     public function login(Request $request)
     {
-        $credentials = $request->validate([
-            'email'    => ['required', 'email'],
-            'password' => ['required'],
-        ]);
+        $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            $user = Auth::user();
-            if ($user->role === 'admin') {
+            // Check role
+            if (Auth::user()->role === 'admin') {
                 return redirect()->route('admin.dashboard');
+            } else {
+                Auth::logout();
+                return back()->withErrors(['email' => 'Not authorized as admin']);
             }
-
-            Auth::logout();
-            return back()->withErrors(['email' => 'You are not authorized as admin.']);
         }
 
-        return back()->withErrors(['email' => 'Invalid credentials.']);
+        return back()->withErrors(['email' => 'Invalid credentials']);
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('admin.login');
     }
 }
