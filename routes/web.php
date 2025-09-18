@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminAuthController;
 
+
 // ------------------ Admin Routes ------------------
 Route::prefix('admin')->group(function () {
     // Admin login
@@ -23,15 +24,21 @@ Route::prefix('admin')->group(function () {
 // ------------------ Customer / Normal User Routes ------------------
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
-        // Optional: redirect admin to admin dashboard
+        
         if (auth()->user()->role === 'admin') {
             return redirect()->route('admin.dashboard');
         }
-        return view('dashboard');
+
+        
+        return view('home');
     })->name('dashboard');
 });
 
-// Homepage / guest access
+// ------------------ Public Routes ------------------
+
 Route::get('/', function () {
-    return view('welcome'); // or your landing page
-});
+    return view('home');
+})->name('home');
+
+
+Route::view('/about', 'about')->name('about');

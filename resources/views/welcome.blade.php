@@ -40,7 +40,7 @@
 
     <!-- Background Image -->
     <div class="absolute inset-0 z-0">
-        <img src="{{ asset('images/jewelry-bg.jpg') }}" alt="Jewelry Background" 
+        <img src="{{ asset('images/bg.jpg') }}" alt="Jewelry Background" 
              class="w-full h-full object-cover opacity-30">
     </div>
 
@@ -51,7 +51,7 @@
     <div class="relative z-10 text-center text-white">
         <!-- Logo -->
         <div class="fade-in">
-            <img src="{{ asset('images/logo.png') }}" alt="RM Jewelry Logo" 
+            <img src="{{ asset('images/Logo.png') }}" alt="RM Jewelry Logo" 
                  class="mx-auto w-28 h-28 drop-shadow-lg">
         </div>
 
