@@ -23,7 +23,7 @@ class AdminAuthController extends Controller
                 return redirect()->route('admin.dashboard');
             } else {
                 Auth::logout();
-                return back()->withErrors(['email' => 'Not authorized as admin']);
+                return back()->withErrors(['email' => 'Not authorized as admin,Please use customer login.']);
             }
         }
 
