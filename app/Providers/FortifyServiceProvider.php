@@ -25,6 +25,7 @@ class FortifyServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        // Default Fortify actions
         Fortify::createUsersUsing(CreateNewUser::class);
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
@@ -42,7 +43,7 @@ class FortifyServiceProvider extends ServiceProvider
                     ]);
                 }
 
-                return $user; // normal customer login
+                return $user; // Normal customer login
             }
 
             return null; // Invalid credentials
@@ -53,13 +54,17 @@ class FortifyServiceProvider extends ServiceProvider
 
         // ----------------- Rate Limiting -----------------
         RateLimiter::for('login', function (Request $request) {
-            $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())).'|'.$request->ip());
+            $throttleKey = Str::transliterate(
+                Str::lower($request->input(Fortify::username())) . '|' . $request->ip()
+            );
 
             return Limit::perMinute(5)->by($throttleKey);
         });
 
         RateLimiter::for('two-factor', function (Request $request) {
-            return Limit::perMinute(5)->by($request->session()->get('login.id'));
+            return Limit::perMinute(5)->by(
+                $request->session()->get('login.id')
+            );
         });
     }
 }

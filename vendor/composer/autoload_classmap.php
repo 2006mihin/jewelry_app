@@ -15,6 +15,8 @@ return array(
     'App\\Http\\Controllers\\AdminAuthController' => $baseDir . '/app/Http/Controllers/AdminAuthController.php',
     'App\\Http\\Controllers\\AdminController' => $baseDir . '/app/Http/Controllers/AdminController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
+    'App\\Http\\Controllers\\ProductController' => $baseDir . '/app/Http/Controllers/ProductController.php',
+    'App\\Http\\Middleware\\AdminMiddleware' => $baseDir . '/app/Http/Middleware/AdminMiddleware.php',
     'App\\Models\\Category' => $baseDir . '/app/Models/Category.php',
     'App\\Models\\Order' => $baseDir . '/app/Models/Order.php',
     'App\\Models\\Payment' => $baseDir . '/app/Models/Payment.php',

@@ -51,6 +51,4 @@ Route::get('/bracelets', [ProductController::class, 'bracelets'])->name('product
 
 // Optional: add to cart
 Route::post('/add-to-cart', [ProductController::class, 'addToCart'])->name('cart.add');
-Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
-Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
 

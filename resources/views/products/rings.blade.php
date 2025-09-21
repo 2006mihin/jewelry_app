@@ -17,14 +17,14 @@
                 <div class="border rounded-lg shadow p-4 bg-white flex flex-col">
                     
                     {{-- Product Image --}}
-                    @if($product->image)
-                        <img src="{{ asset('storage/products/' . $product->image) }}" 
-                             alt="{{ $product->name }}" 
-                             class="w-full h-48 object-cover rounded mb-4">
+                        @if($product->image)
+                        <img src="{{ asset('storage/' . $product->image) }}" 
+                         alt="{{ $product->name }}" 
+                         class="w-full h-48 object-cover rounded mb-4">
                     @else
                         <img src="{{ asset('images/no-image.png') }}" 
-                             alt="No image" 
-                             class="w-full h-48 object-cover rounded mb-4">
+                        alt="No image" 
+                     class="w-full h-48 object-cover rounded mb-4">
                     @endif
 
                     {{-- Product Info --}}

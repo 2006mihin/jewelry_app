@@ -9,12 +9,12 @@ class AdminMiddleware
 {
     public function handle($request, Closure $next)
     {
-        // Not logged in → go to admin login
+        // If user not logged in → send to admin login
         if (!Auth::check()) {
             return redirect()->route('admin.login');
         }
 
-        // Logged in but not admin → logout and redirect
+        // If logged in but not admin → logout + redirect to login
         if (Auth::user()->role !== 'admin') {
             Auth::logout();
             return redirect()->route('admin.login')->withErrors([
