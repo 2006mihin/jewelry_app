@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Category;
 
 class AdminController extends Controller
 {
@@ -21,7 +22,6 @@ class AdminController extends Controller
             abort(403, 'Unauthorized.');
         }
 
-        // ✅ Count totals inside method
         $totalOrders     = Order::count();
         $totalProducts   = Product::count();
         $totalUsers      = User::count();
@@ -35,5 +35,14 @@ class AdminController extends Controller
             'totalCustomers',
             'totalAdmins'
         ));
+    }
+
+    // Admin products page
+    public function products()
+    {
+        $products = Product::with('category')->get();
+        $categories = Category::all();
+
+        return view('admin.adminproducts', compact('products', 'categories'));
     }
 }

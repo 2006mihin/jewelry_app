@@ -30,7 +30,8 @@
                 </a>
 
                 <!-- Total Products -->
-                <a href="{{ route('admin.products') }}"
+                <a href="{{ route('admin.products.index') }}"
+
                    class="group relative block bg-white rounded-xl shadow-lg p-6 transform transition duration-300 hover:scale-105 hover:shadow-2xl">
                     <span class="absolute top-0 left-0 w-full h-1 bg-green-500 rounded-t-xl transition-all duration-300 group-hover:h-2"></span>
                     <h3 class="text-gray-500 text-sm uppercase tracking-wide mt-2 group-hover:text-green-600">Total Products</h3>
