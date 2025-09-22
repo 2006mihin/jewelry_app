@@ -16,7 +16,7 @@ class Shipment extends Model
         'shipped_at',
     ];
 
-    // Relationships
+
     public function order()
     {
         return $this->belongsTo(Order::class);

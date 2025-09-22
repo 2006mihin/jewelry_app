@@ -25,34 +25,34 @@ class FortifyServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        // Default Fortify actions
+        
         Fortify::createUsersUsing(CreateNewUser::class);
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
 
-        // ----------------- Custom Customer Login -----------------
+        
         Fortify::authenticateUsing(function (Request $request) {
             $user = User::where('email', $request->email)->first();
 
             if ($user && Hash::check($request->password, $user->password)) {
-                // Reject admin users from customer login
+                
                 if ($user->role === 'admin') {
                     throw ValidationException::withMessages([
                         Fortify::username() => ['Unauthorized: Please use admin login.'],
                     ]);
                 }
 
-                return $user; // Normal customer login
+                return $user; 
             }
 
-            return null; // Invalid credentials
+            return null;
         });
 
-        // ----------------- Redirect after login -----------------
+        
         Fortify::redirects('/dashboard');
 
-        // ----------------- Rate Limiting -----------------
+        
         RateLimiter::for('login', function (Request $request) {
             $throttleKey = Str::transliterate(
                 Str::lower($request->input(Fortify::username())) . '|' . $request->ip()

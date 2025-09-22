@@ -26,7 +26,7 @@ Route::prefix('admin')->group(function () {
     });
 });
 
-// ------------------ User Dashboard ------------------
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
         if (auth()->user()->role === 'admin') {
@@ -36,9 +36,9 @@ Route::middleware(['auth'])->group(function () {
     })->name('dashboard');
 });
 
-// ------------------ Public Pages ------------------
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 })->name('home');
 
 Route::view('/about', 'about')->name('about');

@@ -18,7 +18,7 @@ class Product extends Model
         'image', 
     ];
 
-    // Relationships
+    
     public function category()
     {
         return $this->belongsTo(Category::class);

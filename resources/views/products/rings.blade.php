@@ -17,20 +17,22 @@
                 <div class="border rounded-lg shadow p-4 bg-white flex flex-col">
                     
                     {{-- Product Image --}}
-                        @if($product->image)
+                    @if($product->image)
                         <img src="{{ asset('storage/' . $product->image) }}" 
-                         alt="{{ $product->name }}" 
-                         class="w-full h-48 object-cover rounded mb-4">
+                             alt="{{ $product->name }}" 
+                             class="w-full h-48 object-cover rounded mb-4">
                     @else
                         <img src="{{ asset('images/no-image.png') }}" 
-                        alt="No image" 
-                     class="w-full h-48 object-cover rounded mb-4">
+                             alt="No image" 
+                             class="w-full h-48 object-cover rounded mb-4">
                     @endif
 
                     {{-- Product Info --}}
                     <h2 class="text-xl font-semibold">{{ $product->name }}</h2>
                     <p class="text-gray-600">{{ $product->description }}</p>
-                    <p class="font-bold mt-2">${{ number_format($product->price, 2) }}</p>
+                    <p class="font-bold mt-2">
+                        ${{ number_format((float) $product->price, 2) }}
+                    </p>
                     <p class="text-sm text-gray-500">Stock: {{ $product->stock }}</p>
 
                     {{-- Buttons --}}
@@ -51,8 +53,4 @@
             @empty
                 <p>No rings available right now.</p>
             @endforelse
-        </div>
-    </div>
-
-</body>
-</html>
+        </d

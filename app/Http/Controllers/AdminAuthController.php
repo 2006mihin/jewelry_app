@@ -1,6 +1,5 @@
 <?php
 
-// AdminAuthController.php
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -18,7 +17,7 @@ class AdminAuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            // Check role
+          
             if (Auth::user()->role === 'admin') {
                 return redirect()->route('admin.dashboard');
             } else {

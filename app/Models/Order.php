@@ -15,7 +15,7 @@ class Order extends Model
         'total',
     ];
 
-    // Relationships
+  
     public function user()
     {
         return $this->belongsTo(User::class);

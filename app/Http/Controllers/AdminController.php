@@ -37,7 +37,7 @@ class AdminController extends Controller
         ));
     }
 
-    // Admin products page
+    
     public function products()
     {
         $products = Product::with('category')->get();

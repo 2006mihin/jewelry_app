@@ -22,7 +22,6 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    // Relationships
     public function orders()
     {
         return $this->hasMany(Order::class);

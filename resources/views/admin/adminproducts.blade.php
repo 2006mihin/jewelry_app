@@ -22,7 +22,7 @@
 
     <main class="p-6 max-w-7xl mx-auto">
 
-        <!-- Back Button -->
+ 
         <div class="mb-4">
             <a href="{{ route('admin.dashboard') }}"
                class="inline-block px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-800 transition">
@@ -32,7 +32,6 @@
 
         <h1 class="text-3xl font-bold mb-8">Manage Products</h1>
 
-        <!-- Success Message -->
         @if(session('success'))
             <div class="bg-green-100 text-green-800 p-3 rounded mb-6">
                 {{ session('success') }}
@@ -83,7 +82,7 @@
                         <input type="number" name="stock" class="w-full border rounded px-3 py-2"
                                value="{{ $editing ? $productToEdit->stock : '' }}" required>
                     </div>
-                    
+
                     <div class="md:col-span-2">
                         <label class="block mb-1 font-medium">Image</label>
                         <input type="file" name="image" class="w-full border rounded px-3 py-2">

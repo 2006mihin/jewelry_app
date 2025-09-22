@@ -11,13 +11,11 @@ class ProductController extends Controller
 {
     // --- Admin CRUD ---
 
-    // Display all products in admin panel
     public function index(Request $request)
     {
         $products = Product::with('category')->get();
         $categories = Category::all();
 
-        // Default values for Blade
         $editing = false;
         $productToEdit = null;
 
@@ -106,7 +104,7 @@ class ProductController extends Controller
         return redirect()->route('admin.products.index')->with('success', 'Product deleted successfully!');
     }
 
-    // --- Public Product Pages ---
+
 
     public function rings()
     {
@@ -136,9 +134,4 @@ class ProductController extends Controller
         return view('products.bracelets', compact('products'));
     }
 
-    // Optional: add to cart
-    public function addToCart(Request $request)
-    {
-        // Implement your add-to-cart logic here
-    }
 }
